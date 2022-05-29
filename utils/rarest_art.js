@@ -45,7 +45,8 @@ layerConfigurations.forEach((config) => {
     });
 });
 
-// check for metadata scores of each artwork
+// check for metadata scores of each artwork (starting from 209-2088)
+data = data.filter((x, i) => x.edition > 208);
 data.forEach((element) => {
     let attributes = element.attributes;
     let elementScoreData = {
@@ -71,4 +72,4 @@ data.forEach((element) => {
 // sort the artwork scores (lowest = rarest)
 artworkScores.sort((a,b) => a.score - b.score);
 
-console.log(artworkScores);
+console.log(JSON.stringify(artworkScores));

@@ -9,6 +9,7 @@ const { getElements } = require("../src/main.js");
 // read json data
 let rawdata = fs.readFileSync(`${basePath}/build/json/_metadata.json`);
 let data = JSON.parse(rawdata);
+let filteredData;
 let editionSize = data.length;
 
 let rarityData = [];
@@ -42,8 +43,9 @@ layerConfigurations.forEach((config) => {
   });
 });
 
-// fill up rarity chart with occurrences from metadata
-data.forEach((element) => {
+// fill up rarity chart with occurrences from metadata (starting from 209-2088)
+filteredData = data.filter(x => x.edition > 208);
+filteredData.forEach((element) => {
   let attributes = element.attributes;
   attributes.forEach((attribute) => {
     let traitType = attribute.trait_type;
